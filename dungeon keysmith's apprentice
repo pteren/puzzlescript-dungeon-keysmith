@@ -1,0 +1,942 @@
+title The Dungeon Keysmith's Apprentice
+author pteren
+
+again_interval 0.08
+realtime_interval 0.1
+
+run_rules_on_level_start
+youtube Xl57VFgopk8?
+
+(debug
+verbose_logging)
+
+
+
+========
+OBJECTS
+========
+
+(Keys)
+
+KeyHandle
+#02aaec #67c3f5
+.111.
+.000.
+.0.01
+.0100
+.000.
+
+KeyFragment1
+#607d8b #78909c
+.11..
+.0011
+10000
+00000
+.....
+
+KeyFragment2
+#607d8b #78909c
+.1...
+.01.1
+10010
+00000
+.....
+
+KeyFragment3
+#607d8b #78909c
+.111.
+.0001
+10100
+00000
+.....
+
+KeyFragment4
+#607d8b #78909c
+..11.
+..001
+11100
+00000
+.....
+
+KeyFragment5
+#607d8b #78909c
+.....
+.1..1
+10110
+00000
+.....
+
+KeyFragment1A
+#02aaec #67c3f5
+.11..
+.0011
+10000
+00000
+.....
+
+KeyFragment2A
+#02aaec #67c3f5
+.1...
+.01.1
+10010
+00000
+.....
+
+KeyFragment3A
+#02aaec #67c3f5
+.111.
+.0001
+10100
+00000
+.....
+
+KeyFragment4A
+#02aaec #67c3f5
+..11.
+..001
+11100
+00000
+.....
+
+KeyFragment5A
+#02aaec #67c3f5
+.....
+.1..1
+10110
+00000
+.....
+
+(Pins)
+
+Pin1
+#f7a500
+00000
+0..00
+0....
+.....
+00000
+
+Pin2
+#f7a500
+00000
+0.000
+0..0.
+.....
+00000
+
+Pin3
+#f7a500
+00000
+0...0
+0.0..
+.....
+00000
+
+Pin4
+#f7a500
+00000
+00..0
+000..
+.....
+00000
+
+Pin5
+#f7a500
+00000
+00000
+0.00.
+.....
+00000
+
+Door0
+#f7a500 #ff9500
+11111
+10001
+10001
+10001
+11111
+
+Door1
+#f7a500 #ff9500
+11111
+10001
+10001
+10001
+11111
+
+Door2
+#f7a500
+.....
+.000.
+.000.
+.000.
+.....
+
+Door3
+#f7a500
+.....
+.....
+..0..
+.....
+.....
+
+DungeonPin1
+#f74500
+00000
+0..00
+0....
+.....
+00000
+
+DungeonPin2
+#f74500
+00000
+0.000
+0..0.
+.....
+00000
+
+DungeonPin3
+#f74500
+00000
+0...0
+0.0..
+.....
+00000
+
+DungeonPin4
+#f74500
+00000
+00..0
+000..
+.....
+00000
+
+DungeonPin5
+#f74500
+00000
+00000
+0.00.
+.....
+00000
+
+DungeonDoor0
+#f74500 #ff1500
+11111
+10001
+10001
+10001
+11111
+
+DungeonDoor1
+#f74500 #ff1500
+11111
+10001
+10001
+10001
+11111
+
+DungeonDoor2
+#f74500
+.....
+.000.
+.000.
+.000.
+.....
+
+DungeonDoor3
+#f74500
+.....
+.....
+..0..
+.....
+.....
+
+(Workshop)
+Wall
+#263238 #37474f
+11010
+11010
+00010
+10111
+00000
+
+
+
+WoodFloor
+#130b08 #19100c #1d120f #1d1512 #251b13
+11440
+43300
+33221
+10022
+22144
+
+Pit1
+black #251b13
+11111
+00000
+00000
+00000
+00000
+
+Pit2
+black
+00000
+00000
+00000
+00000
+00000
+
+FallingKeyHandle1
+#02aaec
+.....
+.....
+.00..
+.000.
+.....
+
+FallingKeyHandle2
+#02aaec
+.....
+.....
+.....
+..0..
+.....
+
+FallingKeyFragment1
+#607d8b
+.....
+.....
+.00..
+.000.
+.....
+
+FallingKeyFragment2
+#607d8b
+.....
+.....
+.....
+..0..
+.....
+
+FallingCrate1
+#3e2723 #4e342e #5d4037
+.....
+.202.
+.010.
+.202.
+.....
+
+FallingCrate2
+#3e2723 #4e342e #5d4037
+.....
+.....
+..1..
+.....
+.....
+
+Safety
+transparent
+
+ForgeL1
+#263238 #37474f #ff3c00 #ff6f00
+00011
+.2001
+22300
+23301
+00000
+
+ForgeL2
+#263238 #37474f #ff3c00 #ff6f00
+00011
+.2001
+.2300
+23301
+00000
+
+ForgeL3
+#263238 #37474f #ff3c00 #ff6f00
+00011
+23001
+23300
+.2301
+00000
+
+ForgeL4
+#263238 #37474f #ff3c00 #ff6f00
+00011
+.2001
+23300
+22301
+00000
+
+ForgeLtemp
+transparent
+
+ForgeR1
+#263238 #37474f #ff3c00 #ff6f00
+11000
+1002.
+00322
+10332
+00000
+
+ForgeR2
+#263238 #37474f #ff3c00 #ff6f00
+11000
+1002.
+0032.
+10332
+00000
+
+ForgeR3
+#263238 #37474f #ff3c00 #ff6f00
+11000
+10032
+00332
+1032.
+00000
+
+ForgeR4
+#263238 #37474f #ff3c00 #ff6f00
+11000
+1002.
+00332
+10322
+00000
+
+ForgeRtemp
+transparent
+
+Crate
+#3e2723 #4e342e #5d4037
+00000
+02120
+01210
+02120
+00000
+
+(Heat)
+HeatL5
+#eeff6e #ffea00
+.....
+.....
+0....
+1....
+.....
+
+HeatL4
+#ffd24a #ffbf00
+.....
+.....
+0....
+1....
+.....
+
+HeatL3
+#ffa03b #ff8400
+.....
+.....
+0....
+1....
+.....
+
+HeatL2
+#eb5017 #ff2f00
+.....
+.....
+0....
+1....
+.....
+
+HeatL1
+#7d3636 #591e1e
+.....
+.....
+0....
+1....
+.....
+
+BondL
+#777 #666
+.....
+.....
+0....
+1....
+.....
+
+HeatR5
+#eeff6e #ffea00
+.....
+....0
+....1
+....1
+.....
+
+HeatR4
+#ffd24a #ffbf00
+.....
+....0
+....1
+....1
+.....
+
+HeatR3
+#ffa03b #ff8400
+.....
+....0
+....1
+....1
+.....
+
+HeatR2
+#eb5017 #ff2f00
+.....
+....0
+....1
+....1
+.....
+
+HeatR1
+#7d3636 #591e1e
+.....
+....0
+....1
+....1
+.....
+
+BondR
+transparent
+
+Lock
+transparent
+
+=======
+LEGEND
+=======
+
+P = KeyHandle and BondR
+A = KeyFragment1
+B = KeyFragment2
+C = KeyFragment3
+D = KeyFragment4
+E = KeyFragment5
+
+1 = Pin1
+2 = Pin2
+3 = Pin3
+4 = Pin4
+5 = Pin5
+6 = DungeonPin1
+7 = DungeonPin2
+8 = DungeonPin3
+9 = DungeonPin4
+0 = DungeonPin5
+
+$ = Door0
+& = DungeonDoor0
+# = Wall
+
+- = WoodFloor
+. = pit2
+
+] = ForgeL1
+[ = ForgeR1
+
+@ = Crate
+
+Key = KeyHandle or KeyFragment1 or KeyFragment2 or KeyFragment3 or KeyFragment4 or KeyFragment5 or KeyFragment1A or KeyFragment2A or KeyFragment3A or KeyFragment4A or KeyFragment5A
+Falling = FallingKeyHandle1 or FallingKeyHandle2 or FallingKeyFragment1 or FallingKeyFragment2 or FallingCrate1 or FallingCrate2
+
+Player = KeyHandle or KeyFragment1A or KeyFragment2A or KeyFragment3A or KeyFragment4A or KeyFragment5A
+
+DungeonPin = DungeonPin1 or DungeonPin2 or DungeonPin3 or DungeonPin4 or DungeonPin5
+Pin = Pin1 or Pin2 or Pin3 or Pin4 or Pin5 or DungeonPin
+
+Background = WoodFloor
+Pit = Pit1 or Pit2
+
+ForgeL = ForgeL1 or ForgeL2 or ForgeL3 or ForgeL4
+ForgeR = ForgeR1 or ForgeR2 or ForgeR3 or ForgeR4
+Forge = ForgeL or ForgeR
+
+DungeonDoor = DungeonDoor0 or DungeonDoor1 or DungeonDoor2 or DungeonDoor3
+Door = Door0 or Door1 or Door2 or Door3 or DungeonDoor
+
+Pushable = Key or Crate
+Solid = Wall or Door or Forge
+
+HeatL = HeatL5 or HeatL4 or HeatL3 or HeatL2 or HeatL1 or BondL
+HeatR = HeatR5 or HeatR4 or HeatR3 or HeatR2 or HeatR1 or BondR
+Heat = HeatL or HeatR
+
+=======
+SOUNDS
+=======
+
+ 
+sfx1 25225300 (key fragment joining)
+sfx2 66581700 (door opening)
+sfx3 6408702 (dungeon door opening)
+sfx5 53390101 (keys falling into pits)
+
+cancel 64582106
+KeyHandle move 752507
+Crate move 99228307
+endlevel 6359300
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Pit
+Solid, Pushable (keys, walls, forges, etc)
+Pin
+
+Falling
+HeatL (heat marks on keys)
+HeatR
+
+Lock (invisible token for pins)
+Safety (invisible toekn for pits)
+
+ForgeLtemp, ForgeRtemp (invisible tokens for forge animation)
+
+======
+RULES
+======
+
+(DEBUG COMMAND)
+([action Player]->win)
+
+(level setup)
+up [Pit2|no Pit]->[Pit1|]
+
+(Key movement)
+
+	(Basic stuff)
+startloop
+[> Pushable|Pushable]->[> Pushable|> Pushable] (generic pushing rule)
+
+right [Key bondR|moving key BondL]->[moving Key bondR|moving key BondL] (if a key fragment moves, also move fragments that are joined together with it)
+right [moving Key bondR|key BondL]->[moving Key bondR|moving key BondL]
+endloop
+
+[> Pushable|Solid]-> cancel (if literally anything tries to move but can't, cancel the turn. This is my entire rigid bodies system.)
+
+	(Falling into pits)
+late [Safety]->[]
+late [Key no Pit]->[Key Safety] (All keys on ground are safe)
+
+late right [Key BondR Safety|Key BondL]->[Key BondR Safety|Key BondL Safety] (All keys connected to safe keys are safe)
+late right [Key BondR|Key BondL Safety]->[Key BondR Safety|Key BondL Safety]
+late [Player Safety][Player]->[Player Safety][Player Safety]
+
+late [FallingKeyFragment2]->[] (Unsafe key fragments fall)
+late [FallingKeyFragment1]->[FallingKeyFragment2] again
+late [Key Pit no Player no Safety]->[FallingKeyFragment1 Pit] sfx5 again
+
+late [FallingKeyHandle2]->[] (Unsafe players fall)
+late [FallingKeyHandle1]->[FallingKeyHandle2] again
+late [Player Pit no Safety]->[FallingKeyHandle1 Pit] sfx5 again
+
+late [FallingCrate2]->[] (Unsafe key fragments fall)
+late [FallingCrate1]->[FallingCrate2] again
+late [Crate Pit]->[FallingCrate1 Pit] sfx5 again
+
+
+(Key forging)
+	(Forges and Heat)
+
+late right [ForgeR|Key]->[ForgeR|Key HeatL5] (Forges heat the ends of key fragments)
+late right [Key|ForgeL]->[Key HeatR5|ForgeL]
+late [KeyHandle HeatL]->[KeyHandle] (You can't heat the back of the key handle)
+
+[moving Key Heat]->[moving Key moving Heat] (heat moves with hot stuff ofc)
+
+[stationary Player][ForgeL]->[stationary Player][ForgeLtemp] (forge animations only run on realtime turns)
+[stationary Player][ForgeR]->[stationary Player][ForgeRtemp]
+[ForgeLtemp]->[random ForgeL]
+[ForgeRtemp]->[random ForgeR]
+
+[moving Player][HeatL1]->[moving Player][] (Key fragments cool down only on player-triggered turns)
+[moving Player][HeatL2]->[moving Player][HeatL1]
+[moving Player][HeatL3]->[moving Player][HeatL2]
+[moving Player][HeatL4]->[moving Player][HeatL3]
+[moving Player][HeatL5]->[moving Player][HeatL4]
+[moving Player][HeatR1]->[moving Player][]
+[moving Player][HeatR2]->[moving Player][HeatR1]
+[moving Player][HeatR3]->[moving Player][HeatR2]
+[moving Player][HeatR4]->[moving Player][HeatR3]
+[moving Player][HeatR5]->[moving Player][HeatR4]
+
+	(Joining key fragments together)
+late right [Key HeatR|Key no HeatL no KeyHandle]->[Key BondR|Key BondL] sfx1
+late right [Key no HeatR|Key HeatL]->[Key BondR|Key BondL] sfx1
+
+startloop
+late right [Player BondR|KeyFragment1]->[Player|KeyFragment1A] (make keys that are joined with the handle shiny and blue)
+late right [Player BondR|KeyFragment2]->[Player|KeyFragment2A]
+late right [Player BondR|KeyFragment3]->[Player|KeyFragment3A]
+late right [Player BondR|KeyFragment4]->[Player|KeyFragment4A]
+late right [Player BondR|KeyFragment5]->[Player|KeyFragment5A]
+endloop
+
+late right [Player HeatR|Player]->[Player|Player] (Remove heat between segments of the player)
+late right [Player|Player HeatL]->[Player|Player]
+late [Player BondR]->[Player]
+
+(Unlocking doors)
+
+[> Pushable no Player|Pin]-> cancel (can't stick random stuff into Pins)
+[> KeyHandle|Pin]-> cancel
+    
+late [Lock]->[]
+late [Pin]->[Pin Lock]
+late [Pin1 KeyFragment1A Lock]->[Pin1 KeyFragment1A] (Unlock pins which match the inserted key segment)
+late [Pin2 KeyFragment2A Lock]->[Pin2 KeyFragment2A]
+late [Pin3 KeyFragment3A Lock]->[Pin3 KeyFragment3A]
+late [Pin4 KeyFragment4A Lock]->[Pin4 KeyFragment4A]
+late [Pin5 KeyFragment5A Lock]->[Pin5 KeyFragment5A]
+
+late [DungeonPin1 KeyFragment1A Lock]->[DungeonPin1 KeyFragment1A] (Same for dungeon pins)
+late [DungeonPin2 KeyFragment2A Lock]->[DungeonPin2 KeyFragment2A]
+late [DungeonPin3 KeyFragment3A Lock]->[DungeonPin3 KeyFragment3A]
+late [DungeonPin4 KeyFragment4A Lock]->[DungeonPin4 KeyFragment4A]
+late [DungeonPin5 KeyFragment5A Lock]->[DungeonPin5 KeyFragment5A]
+
+late [Pin Lock|Pin]->[Pin Lock|Pin Lock]
+
+
+late [Door3]->[Lock] again sfx2 (Door closing animation)
+late [Door2]->[Door3] again sfx2
+late [Door1]->[Door2] again sfx2
+late [Door2|Door0]->[Door2|Door1] again sfx2
+
+late [Pin no Lock|Door0]->[Pin|Door1] again sfx2 (Open door)
+
+
+late [DungeonPin no Lock KeyFragment1A]->[DungeonPin KeyFragment1] (Shatter keys used to unlock dungeon doors)
+late [DungeonPin no Lock KeyFragment2A]->[DungeonPin KeyFragment2]
+late [DungeonPin no Lock KeyFragment3A]->[DungeonPin KeyFragment3]
+late [DungeonPin no Lock KeyFragment4A]->[DungeonPin KeyFragment4]
+late [DungeonPin no Lock KeyFragment5A]->[DungeonPin KeyFragment5]
+
+late [DungeonDoor3]->[Lock] again sfx3 (Dungeon door closing animation)
+late [DungeonDoor2]->[DungeonDoor3] again sfx3
+late [DungeonDoor1]->[DungeonDoor2] again sfx3
+late [DungeonDoor2|DungeonDoor0]->[DungeonDoor2|DungeonDoor1] again sfx3
+late [DungeonPin no Lock|DungeonDoor0]->[DungeonPin|DungeonDoor1] again sfx3 (Open dungeon door)
+
+late [Pin no Lock]->[]
+
+
+
+
+
+
+
+late [Heat no Key]->[] (Delete heat token if it somehow loses its key)
+
+==============
+WINCONDITIONS
+==============
+
+no Door
+no Lock
+
+=======
+LEVELS
+=======
+
+message "All dungeon locks are designed to snap keys into fragments upon unlocking."
+message "Every night, gelatinous cubes sweep the winding passageways of all the dungeons in Orthyx valley, and (along with the bones of foolish adventurers) the key fragments from each dungeon are collected."
+message "Our noble task, my apprentice, is to reforge them. But first... tidy up the workshop!"
+
+message Day 1
+
+########
+pe@---#-
+#--@-@$-
+#@@a--5-
+[---@-$-
+########
+
+############
+######[--#-$
+#@@@---@---1
+#@----@@-#-$
+#--@@d-]####
+pa--##-e#@--
+#########-@-
+
+message "The fragments for Master Warthurst's keys are on the table. Repair one!"
+
+###########-
+#-@-@---d-#-
+#@-----##@#-
+#------][@#-
+#--b-@--@-##
+#-##--@---$-
+p-][@--a@-1-
+#-@----@--$-
+############
+
+message "Here are Borduk the Red's fragments. Get to work!"
+
+########
+#--d--$-
+#-#@--3-
+#-]--@$-
+p-#-@###
+##[--###
+##-c-###
+##---###
+########
+
+
+message "The Childish Wyrmling is contructing a new dungeon under Where Mountain- dammit!"
+message "...Stop laughing and fill her order!"
+
+############
+#-#-@---##--
+#@-@-#-@$$--
+#-@@@---42--
+p@---@--$$--
+#-@b@@d-##--
+##----######
+#[----]#....
+########....
+
+message "Brocknar the Hideous needs two dozen keys by dawn! Get to it!"
+
+###########c@-
+#----e---##@--
+#---@---]##--@
+#-c@----######
+p@@@-@---#####
+#-@-#-e#---$$-
+#####---@@-35-
+--]#[--###-$$-
+@--#----]#-$$-
+@@@###########
+
+message "This batch is for Nerra the Untamed. Don't drop any peices into that crack!"
+
+#######@-.-@.
+#@----[--@-@@
+p-@b@-####@e#
+#-[--.@--####
+#@@@.a-@--$$-
+#--.--]---21-
+#@.-@--@--$$-
+#############
+
+
+message "Repair these keys for the Grim Five."
+
+######.####...#############
+#--@-].[@@@-..[--@@-@$$$$-#
+#-c-@@.---@@..----@@@$$$$@@
+#-@#--.-@--....@@---@$$$$-@
+#-@-@-..a@--...@-@---$$$$@-
+p-----.@----..@------3154--
+#@---..--e--..---@-@-$$$$--
+#@@--@.-----...-d--@-$$$$-@
+#--#@@.@--@...@-----@$$$$@@
+#----].----]..[@-----$$$$@#
+######.#####..#############
+
+message "Don't dawdle, now! The Dark Lord Sothis's treasure lies unguarded! Forge those keys!"
+
+####################@@-@##
+#--@@--------##[@--#-@@-#-
+p-@-----------#@-@-######-
+#-----######.-#@@---$$$$--
+##[-c@#----@--@-@-@-$$$$--
+#--@-@#-@---#----@@-5232--
+###@###---@--@@-@---$$$$--
+#-b---#@@---@-b--@--$$$$--
+#-----#-@-@---@@-@@-$$$$--
+#-@-d-#@-@---@--#@-######-
+#---@@#---@-@---]--#@-@@#-
+##-]######-@--######---@##
+#--e-$$-.@-@-@#@@@----@--@
+#----$$-.-@-@-#@-----@@-@@
+#@---45@.---@@#---@----@-@
+#@@--$$-.--@@-#@---@@-@-@@
+###############-@-@@-@@@@-
+
+message "...Unorthodox, perhaps, but resourceful."
+
+message "Get some sleep- we have another long day of forging ahead of us tomorrow!"
+message ...zzz...
+
+message Day 2
+
+message "Rise and shine! I left some fragments sealed behind this dungeon lock. Make a temporary key to get them out."
+
+###############
+#---]##--@-###-
+p-a@-##-@--$$$-
+#-@--&&@--@415-
+#-d@@69-@--$$$-
+#--@-&&@-e-###-
+#-@--##--@-###-
+###############
+
+message "We just got a cartload of fragments from four different dungeons. Sort them into piles."
+
+...##...##.#########
+...#--.--#.#--@--@@#
+...--@.]-..--@--####
+...-@-.....-----666#
+...---.....@----####
+....--.c..--@---888#
+.....d....-##@--####
+...#.-.-.#-#-@--777#
+...#--a----#----####
+...#----e###--@-000#
+...#e-#b--.-----####
+...#------.-----999#
+...#[-d--a.-@---####
+...#-b-c--.@------@#
+...p---a--.--d-@---#
+...#--e---.#-----@-#
+...#-c---].#########
+...#@--b-#..........
+...#@@--@#..........
+...#######..........
+
+message "Make this new design for Master Khevuin Spar."
+
+###########....#####
+#-@@-]#[-@#-@--#####
+#@---&&-e-#@@@@-$$$-
+#----67-@-#-@@--$$$-
+#-a-@&&-d@#@-@--543-
+#----]#[@@#@-c@-$$$-
+#-@@--#####-@@-#####
+#---@-@--@---@@#####
+p--@@-@-@b@-@-@##---
+#@---@--@--@---##---
+###########....##---
+
+(message "These fragments are for Zaqqix the Eldrich. They're particularly nasty to re-assemble."
+
+########...........
+#----&&#...........
+#----69############
+#-c--&&#------$$$$-
+#---####------$$$$-
+#------#------5351-
+#[e--a----$--d$$$$-
+#---------4--]#####
+p--e##----$---#....
+#---][--------#....
+###############....
+
+1)
+
+message Thanks for playing, more levels/mechanics to come! Please DM me with any thoughts/suggestions. -pteren
