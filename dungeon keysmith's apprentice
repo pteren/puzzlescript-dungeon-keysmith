@@ -5,7 +5,6 @@ again_interval 0.08
 realtime_interval 0.1
 
 run_rules_on_level_start
-youtube Xl57VFgopk8?
 
 (debug
 verbose_logging)
@@ -613,37 +612,37 @@ RULES
 (level setup)
 up [Pit2|no Pit]->[Pit1|]
 
-(Key movement)
 
-	(Basic stuff)
-startloop
-[> Pushable|Pushable]->[> Pushable|> Pushable] (generic pushing rule)
 
-right [Key bondR|moving key BondL]->[moving Key bondR|moving key BondL] (if a key fragment moves, also move fragments that are joined together with it)
-right [moving Key bondR|key BondL]->[moving Key bondR|moving key BondL]
-endloop
+(pushing objects + rigid bodies)
+    startloop
+    [> Pushable|Pushable]->[> Pushable|> Pushable] (generic pushing rule)
 
-[> Pushable|Solid]-> cancel (if literally anything tries to move but can't, cancel the turn. This is my entire rigid bodies system.)
+    right [Key bondR|moving key BondL]->[moving Key bondR|moving key BondL] (if a key fragment moves, also move fragments that are joined together with it)
+    right [moving Key bondR|key BondL]->[moving Key bondR|moving key BondL]
+    endloop
 
-	(Falling into pits)
-late [Safety]->[]
-late [Key no Pit]->[Key Safety] (All keys on ground are safe)
+    [> Pushable|Solid]-> cancel (if literally anything tries to move but can't, cancel the turn. This is my entire rigid bodies system.)
 
-late right [Key BondR Safety|Key BondL]->[Key BondR Safety|Key BondL Safety] (All keys connected to safe keys are safe)
-late right [Key BondR|Key BondL Safety]->[Key BondR Safety|Key BondL Safety]
-late [Player Safety][Player]->[Player Safety][Player Safety]
+(falling into pits)
+    late [Safety]->[]
+    late [Key no Pit]->[Key Safety] (All keys on ground are safe)
 
-late [FallingKeyFragment2]->[] (Unsafe key fragments fall)
-late [FallingKeyFragment1]->[FallingKeyFragment2] again
-late [Key Pit no Player no Safety]->[FallingKeyFragment1 Pit] sfx5 again
+    late right [Key BondR Safety|Key BondL]->[Key BondR Safety|Key BondL Safety] (All keys connected to safe keys are safe)
+    late right [Key BondR|Key BondL Safety]->[Key BondR Safety|Key BondL Safety]
+    late [Player Safety][Player]->[Player Safety][Player Safety]
 
-late [FallingKeyHandle2]->[] (Unsafe players fall)
-late [FallingKeyHandle1]->[FallingKeyHandle2] again
-late [Player Pit no Safety]->[FallingKeyHandle1 Pit] sfx5 again
+    late [FallingKeyFragment2]->[] (Unsafe key fragments fall)
+    late [FallingKeyFragment1]->[FallingKeyFragment2] again
+    late [Key Pit no Player no Safety]->[FallingKeyFragment1 Pit] sfx5 again
 
-late [FallingCrate2]->[] (Unsafe key fragments fall)
-late [FallingCrate1]->[FallingCrate2] again
-late [Crate Pit]->[FallingCrate1 Pit] sfx5 again
+    late [FallingKeyHandle2]->[] (Unsafe players fall)
+    late [FallingKeyHandle1]->[FallingKeyHandle2] again
+    late [Player Pit no Safety]->[FallingKeyHandle1 Pit] sfx5 again
+
+    late [FallingCrate2]->[] (Unsafe key fragments fall)
+    late [FallingCrate1]->[FallingCrate2] again
+    late [Crate Pit]->[FallingCrate1 Pit] sfx5 again
 
 
 (Key forging)
@@ -655,12 +654,14 @@ late [KeyHandle HeatL]->[KeyHandle] (You can't heat the back of the key handle)
 
 [moving Key Heat]->[moving Key moving Heat] (heat moves with hot stuff ofc)
 
-[stationary Player][ForgeL]->[stationary Player][ForgeLtemp] (forge animations only run on realtime turns)
+(forge animations- only on realtime turns)
+[stationary Player][ForgeL]->[stationary Player][ForgeLtemp] 
 [stationary Player][ForgeR]->[stationary Player][ForgeRtemp]
 [ForgeLtemp]->[random ForgeL]
 [ForgeRtemp]->[random ForgeR]
 
-[moving Player][HeatL1]->[moving Player][] (Key fragments cool down only on player-triggered turns)
+(key fragments cool off- only on player-triggered turns)
+[moving Player][HeatL1]->[moving Player][] 
 [moving Player][HeatL2]->[moving Player][HeatL1]
 [moving Player][HeatL3]->[moving Player][HeatL2]
 [moving Player][HeatL4]->[moving Player][HeatL3]
@@ -671,19 +672,21 @@ late [KeyHandle HeatL]->[KeyHandle] (You can't heat the back of the key handle)
 [moving Player][HeatR4]->[moving Player][HeatR3]
 [moving Player][HeatR5]->[moving Player][HeatR4]
 
-	(Joining key fragments together)
+(key fragments join together)
 late right [Key HeatR|Key no HeatL no KeyHandle]->[Key BondR|Key BondL] sfx1
 late right [Key no HeatR|Key HeatL]->[Key BondR|Key BondL] sfx1
 
+(make keys that are joined with the handle shiny and blue)
 startloop
-late right [Player BondR|KeyFragment1]->[Player|KeyFragment1A] (make keys that are joined with the handle shiny and blue)
+late right [Player BondR|KeyFragment1]->[Player|KeyFragment1A] 
 late right [Player BondR|KeyFragment2]->[Player|KeyFragment2A]
 late right [Player BondR|KeyFragment3]->[Player|KeyFragment3A]
 late right [Player BondR|KeyFragment4]->[Player|KeyFragment4A]
 late right [Player BondR|KeyFragment5]->[Player|KeyFragment5A]
 endloop
 
-late right [Player HeatR|Player]->[Player|Player] (Remove heat between segments of the player)
+(Remove heat between segments of the player)
+late right [Player HeatR|Player]->[Player|Player] 
 late right [Player|Player HeatL]->[Player|Player]
 late [Player BondR]->[Player]
 
@@ -836,37 +839,35 @@ p-@b@-####@e#
 
 message "Repair these keys for the Grim Five."
 
-######.####...#############
-#--@-].[@@@-..[--@@-@$$$$-#
-#-c-@@.---@@..----@@@$$$$@@
-#-@#--.-@--....@@---@$$$$-@
-#-@-@-..a@--...@-@---$$$$@-
-p-----.@----..@------3154--
-#@---..--e--..---@-@-$$$$--
-#@@--@.-----...-d--@-$$$$-@
-#--#@@.@--@...@-----@$$$$@@
-#----].----]..[@-----$$$$@#
-######.#####..#############
+#####.####...##########
+#---].[----..[----####@
+#-#--.--@--..-d---$$$$-
+#-@--.-a-@-..-----$$$$@
+p----.-----..----@3154-
+#-c--.--e--..-@---$$$$@
+#-#@-.-----..---@-$$$$@
+#---].@---]..[----####-
+#####.#####..##########
 
 message "Don't dawdle, now! The Dark Lord Sothis's treasure lies unguarded! Forge those keys!"
 
-####################@@-@##
-#--@@--------##[@--#-@@-#-
-p-@-----------#@-@-######-
-#-----######.-#@@---$$$$--
-##[-c@#----@--@-@-@-$$$$--
-#--@-@#-@---#----@@-5232--
-###@###---@--@@-@---$$$$--
-#-b---#@@---@-b--@--$$$$--
-#-----#-@-@---@@-@@-$$$$--
-#-@-d-#@-@---@--#@-######-
-#---@@#---@-@---]--#@-@@#-
-##-]######-@--######---@##
-#--e-$$-.@-@-@#@@@----@--@
-#----$$-.-@-@-#@-----@@-@@
-#@---45@.---@@#---@----@-@
-#@@--$$-.--@@-#@---@@-@-@@
-###############-@-@@-@@@@-
+####################@@-@#
+#--@---------##[--@#-@@-#
+p------------.#--@@######
+#-----######.-#--@--$$$$-
+##[-c@#@@-----@-----$$$$-
+#--@-@#@----#-------5232-
+###@###-@-----------$$$$-
+#-b---#-----@-b--@--$$$$-
+#-----#-------------$$$$-
+#-@-d-#---------#@-######
+#---@@#---------]@@#@-@@#
+##-]######----######---@#
+#--e-$$-.-----#@@@----@--
+#----$$-.-----#@-----@@-@
+#@---45@.---@@#---@----@-
+#@---$$-.-@--@#@---@@-@-@
+###############-@-@@-@@@@
 
 message "...Unorthodox, perhaps, but resourceful."
 
@@ -939,4 +940,4 @@ p--e##----$---#....
 
 1)
 
-message Thanks for playing, more levels/mechanics to come! Please DM me with any thoughts/suggestions. -pteren
+message Thanks for playing, more levels/mechanics to come! Please DM me with any thoughts/suggestions. -pteren 
