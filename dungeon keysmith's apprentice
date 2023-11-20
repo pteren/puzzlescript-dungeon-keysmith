@@ -1,9 +1,7 @@
 title The Dungeon Keysmith's Apprentice
 author pteren
-
 again_interval 0.08
 realtime_interval 0.1
-
 run_rules_on_level_start
 
 (debug
@@ -25,125 +23,126 @@ KeyHandle
 .0100
 .000.
 
-KeyFragment1
-#607d8b #78909c
-.11..
-.0011
-10000
+fragment_1
+#607d8b #889da6
+.....
+.1.1.
+10101
 00000
 .....
 
-KeyFragment2
-#607d8b #78909c
-.1...
-.01.1
-10010
-00000
-.....
-
-KeyFragment3
-#607d8b #78909c
-.111.
-.0001
-10100
-00000
-.....
-
-KeyFragment4
-#607d8b #78909c
+fragment_2
+#607d8b #889da6
 ..11.
-..001
-11100
+..00.
+11001
 00000
 .....
 
-KeyFragment5
-#607d8b #78909c
-.....
-.1..1
-10110
+fragment_3
+#607d8b #889da6
+..1..
+..01.
+11001
 00000
 .....
 
-KeyFragment1A
-#02aaec #67c3f5
-.11..
-.0011
-10000
-00000
-.....
-
-KeyFragment2A
-#02aaec #67c3f5
-.1...
-.01.1
-10010
-00000
-.....
-
-KeyFragment3A
-#02aaec #67c3f5
+fragment_4
+#607d8b #889da6
 .111.
-.0001
-10100
+.000.
+10101
 00000
 .....
 
-KeyFragment4A
+fragment_5
+#607d8b #889da6
+..11.
+..00.
+11101
+00000
+.....
+
+fragment_1a
+#02aaec #67c3f5
+.....
+.1.1.
+10101
+00000
+.....
+
+fragment_2a
 #02aaec #67c3f5
 ..11.
-..001
-11100
+..00.
+11001
 00000
 .....
 
-KeyFragment5A
+fragment_3a
 #02aaec #67c3f5
-.....
-.1..1
-10110
+..1..
+..01.
+11001
 00000
 .....
+
+fragment_4a
+#02aaec #67c3f5
+.111.
+.000.
+10101
+00000
+.....
+
+fragment_5a
+#02aaec #67c3f5
+..11.
+..00.
+11101
+00000
+.....
+
 
 (Pins)
 
 Pin1
 #f7a500
 00000
-0..00
-0....
+00000
+0.0.0
 .....
 00000
 
 Pin2
 #f7a500
 00000
-0.000
-0..0.
+00..0
+00..0
 .....
 00000
 
 Pin3
 #f7a500
 00000
-0...0
-0.0..
+00.00
+00..0
 .....
 00000
 
 Pin4
 #f7a500
 00000
-00..0
-000..
+0...0
+0.0.0
 .....
 00000
 
 Pin5
 #f7a500
 00000
-00000
-0.00.
+00..0
+000.0
 .....
 00000
 
@@ -182,40 +181,40 @@ Door3
 DungeonPin1
 #f74500
 00000
-0..00
-0....
+00000
+0.0.0
 .....
 00000
 
 DungeonPin2
 #f74500
 00000
-0.000
-0..0.
+00..0
+00..0
 .....
 00000
 
 DungeonPin3
 #f74500
 00000
-0...0
-0.0..
+00.00
+00..0
 .....
 00000
 
 DungeonPin4
 #f74500
 00000
-00..0
-000..
+0...0
+0.0.0
 .....
 00000
 
 DungeonPin5
 #f74500
 00000
-00000
-0.00.
+00..0
+000.0
 .....
 00000
 
@@ -467,40 +466,40 @@ BondL
 HeatR5
 #eeff6e #ffea00
 .....
+.....
 ....0
-....1
 ....1
 .....
 
 HeatR4
 #ffd24a #ffbf00
 .....
+.....
 ....0
-....1
 ....1
 .....
 
 HeatR3
 #ffa03b #ff8400
 .....
+.....
 ....0
-....1
 ....1
 .....
 
 HeatR2
 #eb5017 #ff2f00
 .....
+.....
 ....0
-....1
 ....1
 .....
 
 HeatR1
 #7d3636 #591e1e
 .....
+.....
 ....0
-....1
 ....1
 .....
 
@@ -515,11 +514,11 @@ LEGEND
 =======
 
 P = KeyHandle and BondR
-A = KeyFragment1
-B = KeyFragment2
-C = KeyFragment3
-D = KeyFragment4
-E = KeyFragment5
+A = fragment_1
+B = fragment_2
+C = fragment_3
+D = fragment_4
+E = fragment_5
 
 1 = Pin1
 2 = Pin2
@@ -544,10 +543,13 @@ $ = Door0
 
 @ = Crate
 
-Key = KeyHandle or KeyFragment1 or KeyFragment2 or KeyFragment3 or KeyFragment4 or KeyFragment5 or KeyFragment1A or KeyFragment2A or KeyFragment3A or KeyFragment4A or KeyFragment5A
+
+fragment = fragment_1 or fragment_2 or fragment_3 or fragment_4 or fragment_5
+Player = KeyHandle or fragment_1a or fragment_2a or fragment_3a or fragment_4a or fragment_5a
+Key = fragment or Player
+
 Falling = FallingKeyHandle1 or FallingKeyHandle2 or FallingKeyFragment1 or FallingKeyFragment2 or FallingCrate1 or FallingCrate2
 
-Player = KeyHandle or KeyFragment1A or KeyFragment2A or KeyFragment3A or KeyFragment4A or KeyFragment5A
 
 DungeonPin = DungeonPin1 or DungeonPin2 or DungeonPin3 or DungeonPin4 or DungeonPin5
 Pin = Pin1 or Pin2 or Pin3 or Pin4 or Pin5 or DungeonPin
@@ -678,11 +680,11 @@ late right [Key no HeatR|Key HeatL]->[Key BondR|Key BondL] sfx1
 
 (make keys that are joined with the handle shiny and blue)
 startloop
-late right [Player BondR|KeyFragment1]->[Player|KeyFragment1A] 
-late right [Player BondR|KeyFragment2]->[Player|KeyFragment2A]
-late right [Player BondR|KeyFragment3]->[Player|KeyFragment3A]
-late right [Player BondR|KeyFragment4]->[Player|KeyFragment4A]
-late right [Player BondR|KeyFragment5]->[Player|KeyFragment5A]
+late right [Player BondR|fragment_1]->[Player|fragment_1a] 
+late right [Player BondR|fragment_2]->[Player|fragment_2a]
+late right [Player BondR|fragment_3]->[Player|fragment_3a]
+late right [Player BondR|fragment_4]->[Player|fragment_4a]
+late right [Player BondR|fragment_5]->[Player|fragment_5a]
 endloop
 
 (Remove heat between segments of the player)
@@ -697,19 +699,20 @@ late [Player BondR]->[Player]
     
 late [Lock]->[]
 late [Pin]->[Pin Lock]
-late [Pin1 KeyFragment1A Lock]->[Pin1 KeyFragment1A] (Unlock pins which match the inserted key segment)
-late [Pin2 KeyFragment2A Lock]->[Pin2 KeyFragment2A]
-late [Pin3 KeyFragment3A Lock]->[Pin3 KeyFragment3A]
-late [Pin4 KeyFragment4A Lock]->[Pin4 KeyFragment4A]
-late [Pin5 KeyFragment5A Lock]->[Pin5 KeyFragment5A]
+(Unlock pins which match the inserted key segment)
+late [Pin1 fragment_1a Lock]->[Pin1 fragment_1a]
+late [Pin2 fragment_2a Lock]->[Pin2 fragment_2a]
+late [Pin3 fragment_3a Lock]->[Pin3 fragment_3a]
+late [Pin4 fragment_4a Lock]->[Pin4 fragment_4a]
+late [Pin5 fragment_5a Lock]->[Pin5 fragment_5a]
 
-late [DungeonPin1 KeyFragment1A Lock]->[DungeonPin1 KeyFragment1A] (Same for dungeon pins)
-late [DungeonPin2 KeyFragment2A Lock]->[DungeonPin2 KeyFragment2A]
-late [DungeonPin3 KeyFragment3A Lock]->[DungeonPin3 KeyFragment3A]
-late [DungeonPin4 KeyFragment4A Lock]->[DungeonPin4 KeyFragment4A]
-late [DungeonPin5 KeyFragment5A Lock]->[DungeonPin5 KeyFragment5A]
+late [DungeonPin1 fragment_1a Lock]->[DungeonPin1 fragment_1a] (Same for dungeon pins)
+late [DungeonPin2 fragment_2a Lock]->[DungeonPin2 fragment_2a]
+late [DungeonPin3 fragment_3a Lock]->[DungeonPin3 fragment_3a]
+late [DungeonPin4 fragment_4a Lock]->[DungeonPin4 fragment_4a]
+late [DungeonPin5 fragment_5a Lock]->[DungeonPin5 fragment_5a]
 
-late [Pin Lock|Pin]->[Pin Lock|Pin Lock]
+late [Pin Lock|Pin]->[Pin Lock|Pin Lock] (unlocking fails if any pins were not unlocked)
 
 
 late [Door3]->[Lock] again sfx2 (Door closing animation)
@@ -720,16 +723,17 @@ late [Door2|Door0]->[Door2|Door1] again sfx2
 late [Pin no Lock|Door0]->[Pin|Door1] again sfx2 (Open door)
 
 
-late [DungeonPin no Lock KeyFragment1A]->[DungeonPin KeyFragment1] (Shatter keys used to unlock dungeon doors)
-late [DungeonPin no Lock KeyFragment2A]->[DungeonPin KeyFragment2]
-late [DungeonPin no Lock KeyFragment3A]->[DungeonPin KeyFragment3]
-late [DungeonPin no Lock KeyFragment4A]->[DungeonPin KeyFragment4]
-late [DungeonPin no Lock KeyFragment5A]->[DungeonPin KeyFragment5]
+late [DungeonPin no Lock fragment_1a]->[DungeonPin fragment_1] (Shatter keys used to unlock dungeon doors)
+late [DungeonPin no Lock fragment_2a]->[DungeonPin fragment_2]
+late [DungeonPin no Lock fragment_3a]->[DungeonPin fragment_3]
+late [DungeonPin no Lock fragment_4a]->[DungeonPin fragment_4]
+late [DungeonPin no Lock fragment_5a]->[DungeonPin fragment_5]
 
 late [DungeonDoor3]->[Lock] again sfx3 (Dungeon door closing animation)
 late [DungeonDoor2]->[DungeonDoor3] again sfx3
 late [DungeonDoor1]->[DungeonDoor2] again sfx3
 late [DungeonDoor2|DungeonDoor0]->[DungeonDoor2|DungeonDoor1] again sfx3
+
 late [DungeonPin no Lock|DungeonDoor0]->[DungeonPin|DungeonDoor1] again sfx3 (Open dungeon door)
 
 late [Pin no Lock]->[]
@@ -851,23 +855,23 @@ p----.-----..----@3154-
 
 message "Don't dawdle, now! The Dark Lord Sothis's treasure lies unguarded! Forge those keys!"
 
-####################@@-@#
-#--@---------##[--@#-@@-#
-p------------.#--@@######
-#-----######.-#--@--$$$$-
-##[-c@#@@-----@-----$$$$-
-#--@-@#@----#-------5232-
-###@###-@-----------$$$$-
-#-b---#-----@-b--@--$$$$-
-#-----#-------------$$$$-
-#-@-d-#---------#@-######
-#---@@#---------]@@#@-@@#
-##-]######----######---@#
-#--e-$$-.-----#@@@----@--
-#----$$-.-----#@-----@@-@
-#@---45@.---@@#---@----@-
-#@---$$-.-@--@#@---@@-@-@
-###############-@-@@-@@@@
+#################@-@@#
+#--@------@--#@@#@@--#
+p-------@@---#-@#-@@@#
+#@----#####.-.--######
+##[-c@#-----.----$$$$-
+#--@-@#-@-------@$$$$-
+###@###--------@-4232-
+#-b---#-@@---b---$$$$-
+#-----#----@-----$$$$-
+#-@-a-#---@-----######
+#---@@#----]--@-#@-@-#
+##-]########----#@@-@#
+#--d-$$--------@#@-@--
+#----$$-.--@@---#-@@-@
+#@---14@.-----@@#@--@-
+#@---$$-.-@----@#-@-@@
+#################--@@@
 
 message "...Unorthodox, perhaps, but resourceful."
 
