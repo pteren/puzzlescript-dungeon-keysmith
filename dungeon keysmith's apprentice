@@ -509,6 +509,9 @@ transparent
 Lock
 transparent
 
+input
+transparent
+
 =======
 LEGEND
 =======
@@ -600,9 +603,10 @@ HeatL (heat marks on keys)
 HeatR
 
 Lock (invisible token for pins)
-Safety (invisible toekn for pits)
+Safety (invisible token for pits)
 
 ForgeLtemp, ForgeRtemp (invisible tokens for forge animation)
+input (invisible token to turns with player input)
 
 ======
 RULES
@@ -613,6 +617,9 @@ RULES
 
 (level setup)
 up [Pit2|no Pit]->[Pit1|]
+
+(user input check)
+[moving player]->[moving player input] (creates an input token if this isn't a realtime turn.)
 
 
 
@@ -662,18 +669,6 @@ late [KeyHandle HeatL]->[KeyHandle] (You can't heat the back of the key handle)
 [ForgeLtemp]->[random ForgeL]
 [ForgeRtemp]->[random ForgeR]
 
-(key fragments cool off- only on player-triggered turns)
-[moving Player][HeatL1]->[moving Player][] 
-[moving Player][HeatL2]->[moving Player][HeatL1]
-[moving Player][HeatL3]->[moving Player][HeatL2]
-[moving Player][HeatL4]->[moving Player][HeatL3]
-[moving Player][HeatL5]->[moving Player][HeatL4]
-[moving Player][HeatR1]->[moving Player][]
-[moving Player][HeatR2]->[moving Player][HeatR1]
-[moving Player][HeatR3]->[moving Player][HeatR2]
-[moving Player][HeatR4]->[moving Player][HeatR3]
-[moving Player][HeatR5]->[moving Player][HeatR4]
-
 (key fragments join together)
 late right [Key HeatR|Key no HeatL no KeyHandle]->[Key BondR|Key BondL] sfx1
 late right [Key no HeatR|Key HeatL]->[Key BondR|Key BondL] sfx1
@@ -691,6 +686,18 @@ endloop
 late right [Player HeatR|Player]->[Player|Player] 
 late right [Player|Player HeatL]->[Player|Player]
 late [Player BondR]->[Player]
+
+(key fragments cool off- only on player-triggered turns)
+late [input][HeatL1]->[input][]
+late [input][HeatL2]->[input][HeatL1]
+late [input][HeatL3]->[input][HeatL2]
+late [input][HeatL4]->[input][HeatL3]
+late [input][HeatL5]->[input][HeatL4]
+late [input][HeatR1]->[input][]
+late [input][HeatR2]->[input][HeatR1]
+late [input][HeatR3]->[input][HeatR2]
+late [input][HeatR4]->[input][HeatR3]
+late [input][HeatR5]->[input][HeatR4]
 
 (Unlocking doors)
 
@@ -745,6 +752,8 @@ late [Pin no Lock]->[]
 
 
 late [Heat no Key]->[] (Delete heat token if it somehow loses its key)
+
+late [input]->[]
 
 ==============
 WINCONDITIONS
