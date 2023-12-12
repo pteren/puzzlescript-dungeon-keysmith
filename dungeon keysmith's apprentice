@@ -583,6 +583,8 @@ sfx1 25225300 (key fragment joining)
 sfx2 66581700 (door opening)
 sfx3 6408702 (dungeon door opening)
 sfx5 53390101 (keys falling into pits)
+sfx6 68338307 (pin clicks) 
+sfx7 48233307 (pin clicks)
 
 cancel 64582106
 KeyHandle move 752507
@@ -703,7 +705,10 @@ late [input][HeatR5]->[input][HeatR4]
 
 [> Pushable no Player|Pin]-> cancel (can't stick random stuff into Pins)
 [> KeyHandle|Pin]-> cancel
-    
+
+[right player|Pin]-> sfx6
+[left player Pin]-> sfx7
+
 late [Lock]->[]
 late [Pin]->[Pin Lock]
 (Unlock pins which match the inserted key segment)
@@ -787,7 +792,7 @@ pe@---#-
 pa--##-e#@--
 #########-@-
 
-message "The fragments for Master Warthurst's keys are on the table. Repair one!"
+message "The fragments for Master Warthurst's keys are on the table. Repair one and check it in the test lock!"
 
 ###########-
 #-@-@---d-#-
@@ -795,7 +800,7 @@ message "The fragments for Master Warthurst's keys are on the table. Repair one!
 #------][@#-
 #--b-@--@-##
 #-##--@---$-
-p-][@--a@-1-
+p-][@-a#@-1-
 #-@----@--$-
 ############
 
@@ -825,7 +830,7 @@ p@---@--$$--
 #[----]#....
 ########....
 
-message "Brocknar the Hideous needs two dozen keys by dawn! Get to it!"
+message "Brocknar the Hideous needs two dozen keys before dawn! Get to it!"
 
 ###########c@-
 #----e---##@--
@@ -838,7 +843,7 @@ p@@@-@---#####
 @--#----]#-$$-
 @@@###########
 
-message "This batch is for Nerra the Untamed. Don't drop any peices into that crack!"
+message "This batch is for Nerra the Untamed. Don't let any peices fall into that crack!"
 
 #######@-.-@.
 #@----[--@-@@
@@ -876,10 +881,10 @@ p-------@@---#-@#-@@@#
 #-@-a-#---@-----######
 #---@@#----]--@-#@-@-#
 ##-]########----#@@-@#
-#--d-$$--------@#@-@--
+#--d-$$-.------@#@-@--
 #----$$-.--@@---#-@@-@
 #@---14@.-----@@#@--@-
-#@---$$-.-@----@#-@-@@
+#@@--$$-.-@----@#-@-@@
 #################--@@@
 
 message "...Unorthodox, perhaps, but resourceful."
@@ -902,26 +907,26 @@ p-a@-##-@--$$$-
 
 message "We just got a cartload of fragments from four different dungeons. Sort them into piles."
 
-...##...##.#########
-...#--.--#.#--@--@@#
-...--@.]-..--@--####
-...-@-.....-----666#
-...---.....@----####
-....--.c..--@---888#
-.....d....-##@--####
-...#.-.-.#-#-@--777#
-...#--a----#----####
-...#----e###--@-000#
-...#e-#b--.-----####
-...#------.-----999#
-...#[-d--a.-@---####
-...#-b-c--.@------@#
-...p---a--.--d-@---#
-...#--e---.#-----@-#
-...#-c---].#########
-...#@--b-#..........
-...#@@--@#..........
-...#######..........
+##...##.#########
+#--.--#.#--@--@@#
+--@.]-..--@--####
+-@-.....-----666#
+---.....@----####
+.--.c..--@---888#
+..d....-##@--####
+#.-.-.#-#-@--777#
+#--a----#----####
+#----e###--@-000#
+#e-#b--.-----####
+#------.-----999#
+#[-d--a.-@---####
+#-b-c--.@------@#
+p---a--.--d-@---#
+#--e---.#-----@-#
+#-c---].#########
+#@--b-#..........
+#@@--@#..........
+#######..........
 
 message "Make this new design for Master Khevuin Spar."
 
@@ -966,4 +971,4 @@ p-----a---4--]#####
 ..###########..#..)
 
 
-message Thanks for playing, more levels/mechanics to come! Please DM me with any thoughts/suggestions. -pteren 
+message Thanks for playing! Please leave a comment or DM me with any thoughts/suggestions -pteren 
