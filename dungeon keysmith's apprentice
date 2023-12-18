@@ -4,9 +4,9 @@ again_interval 0.08
 realtime_interval 0.1
 run_rules_on_level_start
 
-(debug
-verbose_logging)
-
+(
+verbose_logging
+)
 
 
 ========
@@ -536,6 +536,7 @@ E = fragment_5
 
 $ = Door0
 & = DungeonDoor0
+* = DungeonDoor0 and Pit2
 # = Wall
 
 - = WoodFloor
@@ -579,16 +580,17 @@ SOUNDS
 =======
 
  
-sfx1 25225300 (key fragment joining)
+sfx1 25225300 (key fragment joining + level start)
 sfx2 66581700 (door opening)
 sfx3 6408702 (dungeon door opening)
 sfx5 53390101 (keys falling into pits)
-sfx6 68338307 (pin clicks) 
+sfx6 68338307 (pin clicks)
 sfx7 48233307 (pin clicks)
 
 cancel 64582106
 KeyHandle move 752507
 Crate move 99228307
+startlevel 25225300
 endlevel 6359300
 
 ================
@@ -618,7 +620,9 @@ RULES
 ([action Player]->win)
 
 (level setup)
+[dungeondoor pit|dungeonpin]->[dungeondoor pit|dungeonpin Pit2]
 up [Pit2|no Pit]->[Pit1|]
+
 
 (user input check)
 [moving player]->[moving player input] (creates an input token if this isn't a realtime turn.)
@@ -672,8 +676,8 @@ late [KeyHandle HeatL]->[KeyHandle] (You can't heat the back of the key handle)
 [ForgeRtemp]->[random ForgeR]
 
 (key fragments join together)
-late right [Key HeatR|Key no HeatL no KeyHandle]->[Key BondR|Key BondL] sfx1
-late right [Key no HeatR|Key HeatL]->[Key BondR|Key BondL] sfx1
+late right [Key HeatR|Key no BondL no KeyHandle]->[Key BondR|Key BondL] sfx1
+late right [Key no BondR|Key HeatL]->[Key BondR|Key BondL] sfx1
 
 (make keys that are joined with the handle shiny and blue)
 startloop
@@ -687,7 +691,6 @@ endloop
 (Remove heat between segments of the player)
 late right [Player HeatR|Player]->[Player|Player] 
 late right [Player|Player HeatL]->[Player|Player]
-late [Player BondR]->[Player]
 
 (key fragments cool off- only on player-triggered turns)
 late [input][HeatL1]->[input][]
@@ -735,11 +738,24 @@ late [Door2|Door0]->[Door2|Door1] again sfx2
 late [Pin no Lock|Door0]->[Pin|Door1] again sfx2 (Open door)
 
 
-late [DungeonPin no Lock fragment_1a]->[DungeonPin fragment_1] (Shatter keys used to unlock dungeon doors)
-late [DungeonPin no Lock fragment_2a]->[DungeonPin fragment_2]
-late [DungeonPin no Lock fragment_3a]->[DungeonPin fragment_3]
-late [DungeonPin no Lock fragment_4a]->[DungeonPin fragment_4]
-late [DungeonPin no Lock fragment_5a]->[DungeonPin fragment_5]
+late [DungeonPin no Lock fragment_1a]->[DungeonPin fragment_1] sfx3 (Shatter keys used to unlock dungeon doors)
+late [DungeonPin no Lock fragment_2a]->[DungeonPin fragment_2] sfx3
+late [DungeonPin no Lock fragment_3a]->[DungeonPin fragment_3] sfx3
+late [DungeonPin no Lock fragment_4a]->[DungeonPin fragment_4] sfx3
+late [DungeonPin no Lock fragment_5a]->[DungeonPin fragment_5] sfx3
+
+late right [player|player]->[player BondR|player BondL] (temporarily bond segemnts of players together. used in the next step)
+
+startloop
+late right [no player|fragment_1a]->[|fragment_1] (any fragments which were sticking)
+late right [no player|fragment_2a]->[|fragment_2] 
+late right [no player|fragment_4a]->[|fragment_4]
+late right [no player|fragment_3a]->[|fragment_3]
+late right [no player|fragment_5a]->[|fragment_5]
+endloop
+
+late [player BondR]->[player] (remove bonds between segments of the player)
+late [player BondL]->[player]
 
 late [DungeonDoor3]->[Lock] again sfx3 (Dungeon door closing animation)
 late [DungeonDoor2]->[DungeonDoor3] again sfx3
@@ -954,7 +970,69 @@ p-----a---4--]#####
 ..#---][-------#...
 ..##############...
 
+message "Match this lock from the Tomb of Inconvenience!"
+
+#################
+#-----]#--@&---@#
+#-----##---9--@@#
+#-------------###
+##--####------$$-
+..-..#@@------14-
+...-.#@--@----$$-
+##--#########-###
+#-d---------#-#..
+#---c-##-b--#-#..
+p--e--#[--a-#-#..
+#-------------#..
+###############..
+
+message "I welded the wrong cut onto this handle acciden- i mean, as a training exercise!"
+
+##############
+pb--]#[---&--#
+##--d#----9--#
+#----#----####
+#-@-]#[---#...
+#---c#----#...
+#--@------####
+#----&----$$$-
+#----7----342-
+#@---&@@-@$$$-
+##############
+
+message "Create this intricate key for Orqlexx the Omnivorous"
+
+###################
+#----.-#.-------@@#
+#-d--.-6.-#---@--@#
+#--b-.-#.---------#
+#-c--.-6.--[-----@#
+#---c.-#.---------#
+#----.-#.-------@-#
+#--b]#---------@-@#
+#---##-#-----######
+p------#-----#$$$$$
+#-a-####------$$$$$
+#--a#.#-------24323
+#@--#.#-------$$$$$
+#####.#--#[-]#$$$$$
+......#############
+
 (
+##############
+#----------$$$
+---b-.-##--$$$
+#--b-*-----225
+#----9-----$$$
+#----*-##--$$$
+#----.-][--###
+#--d-.-##----#
+#----.-e#----#
+#----.-##----#
+#------]#----#
+##############
+
+
 #######...........
 #---&&#..#########
 #---&&#..#----$$$$
@@ -972,3 +1050,4 @@ p-----a---4--]#####
 
 
 message Thanks for playing! Please leave a comment or DM me with any thoughts/suggestions -pteren 
+
